@@ -19,19 +19,14 @@ function ai=coeficientes(Xi,Yi,n)
 endfunction  
 
 function p=polinomio(x,ai)
-  p=0
+  p=0;
   for i=1:length(ai)
     p=p+ai(i).*x.^(i-1);
   endfor
   
 endfunction
 
-function [Pi,error] = general(Xi,Yi,n)
-  Gi=1./Yi
-  ai=coeficientes(Xi,Gi,2)
-  Pi=1./(ai(1)+ai(2).*Xi)
-  error=(sum((Yi-Pi).^2)./length(Xi))^(1/2)
-endfunction
+
 
 % 3.0000000  -0.7708333 0.1388889 0.0052083 -0.0034722
 ai=coeficientes(Xi,Yi,n)
