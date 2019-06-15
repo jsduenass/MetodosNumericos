@@ -72,3 +72,22 @@ ai=coeficientes(Xi,Gi,2)
 Pi=1./(ai(1)+ai(2).*Xi)
 
 error=(sum((Yi-Pi).^2)./length(Xi))^(1/2)
+
+
+function [Pi,error] = general(Xi,Gi,n,redefinir, devolver)
+  eval(redefinir);              %redefine el vector Yi y lo pasa a Xi
+  ai=coeficientes(Xi,Yi,2);
+  eval(devolver);
+  error=(sum((Gi-Pi).^2)./length(Xi))^(1/2);      
+endfunction
+clc
+redefinir="Yi=log(Gi) ;";
+devolver="Pi=exp(ai(1)+ai(2).*Xi) ;";
+Gi=Yi;
+[Pi,error] = general(Xi,Gi,n,redefinir, devolver)
+
+
+redefinir="Yi=1./Gi ;";
+devolver="Pi=1./(ai(1)+ai(2).*Xi) ;";
+Gi=Yi;
+[Pi,error] = general(Xi,Gi,n,redefinir, devolver)
