@@ -33,4 +33,6 @@ endwhile
 
 
 respuesta=M*X'
+
+
   
